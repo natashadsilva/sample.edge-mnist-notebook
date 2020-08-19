@@ -124,7 +124,8 @@ class RenderClassificationMetrics:
               notDone = False
               return
             for raw_metrics in view_metrics:
-                metrics = json.loads(raw_metrics)
+                #metrics = json.loads(raw_metrics)
+                metrics = raw_metrics
                 for camera in self.cameras:
                     with self.class_widgets[camera]:
                         certain = metrics['camera_metrics'][camera]['certain']
@@ -224,7 +225,7 @@ class RenderWindowUncertain:
                 time.sleep(4.5)
                 continue
             for view_metric in view_metrics[0]:
-                metrics = json.loads(view_metric)
+                metrics = view_metric #json.loads(view_metric)
                 for camera in self.cameras:
                     if not process_event.is_set():
                         return
@@ -348,7 +349,7 @@ class RenderUncertainImages:
         if self.pause_active:
             return
         self.view_tuples.appendleft(tup)
-        self.render_view(json.loads(tup), status_text)
+        self.render_view(tup, status_text)
         
     def render_view(self, tup, status_text):
       """ display data in dashboard
@@ -399,7 +400,7 @@ class RenderUncertainImages:
                 self.pause_active = False
                 self.pause_button.description = "Pause"
             
-        self.render_view(json.loads(self.view_tuples[self.image_index]), "{} of {}".format(self.image_index+1, len(self.view_tuples)))
+        self.render_view(self.view_tuples[self.image_index], "{} of {}".format(self.image_index+1, len(self.view_tuples)))
 
     def update_status(self, text_message):
         """alternate to direct"""
@@ -413,7 +414,7 @@ class RenderUncertainImages:
         self.stop_button.description = ""
         self.stop_button.disabled = True
         self.stop_button.tooltip = "inactive"
-        self.render_view(json.loads(self.view_tuples[self.image_index]),message)
+        self.render_view(self.view_tuples[self.image_index],message)
 
         """
         Thread processing
@@ -483,7 +484,7 @@ class CorrectionDashboard():
         """Setup event handler for Previous/Next/Commit buttons"""
         #set_trace()
         if button.description == "Training Upload":
-            image_new_result = [key for key in self.corrected_images.keys() if str(json.loads(self.view_tuples[key])['result_class']) != self.corrected_images[key]]
+            image_new_result = [key for key in self.corrected_images.keys() if str(self.view_tuples[key]['result_class']) != self.corrected_images[key]]
             self.status.value = "Augment training for {} images".format(len(image_new_result))
             self.progress_rework.max = len(image_new_result)
             cnt = 1             
@@ -491,7 +492,7 @@ class CorrectionDashboard():
                 self.progress_rework.value = cnt
                 cnt += 1
                 time.sleep(2)
-                self.status.value = "image:{} original result_class:{}  updated result:{}".format(idx, json.loads(self.view_tuples[idx])['result_class'], self.corrected_images[idx])
+                self.status.value = "image:{} original result_class:{}  updated result:{}".format(idx, self.view_tuples[idx]['result_class'], self.corrected_images[idx])
             self.status.value = "Updated...."
             return
         self.correct_radio.disabled = True
@@ -499,7 +500,7 @@ class CorrectionDashboard():
             self.image_index += 1
         if button.description == "Previous" and self.image_index != 0:
             self.image_index -= 1
-        self.display_view(json.loads(self.view_tuples[self.image_index]), "{} of {}".format(len(self.view_tuples), self.image_index))
+        self.display_view(self.view_tuples[self.image_index], "{} of {}".format(len(self.view_tuples), self.image_index))
         self.correct_radio.disabled = False
 
     
@@ -607,5 +608,5 @@ class CorrectionDashboard():
     def render_review(self, view_tuples):
         self.view_tuples = view_tuples
         self.image_index = 0
-        self.display_view(json.loads(view_tuples[self.image_index]), "Reviewing {} images".format(len(view_tuples)))
+        self.display_view(view_tuples[self.image_index], "Reviewing {} images".format(len(view_tuples)))
         self.init_phase = False
