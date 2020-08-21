@@ -44,35 +44,35 @@ directly from the `sample.edge-mnist-notebook` Github repository.  Further docum
 integrating with Github is available [here](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html).
 
 ### 2. Build and Deploy Micro-Edge Application
-- Open the `build-edge-application.jupyter-py36` notebook in CPD.
-- Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and the Event Streams topic (`EVENTSTREAMS_TOPIC`) are set
-appropriately to match your environment (Requirements 6 and 7, respectively, above).
-- Execute each cell in the notebook.
-- Be sure to enter your Event Streams credentials string in the third code cell when it prompts.  This should have been acquired while setting up the Event Streams instance, above in Requirement 7.
-- The last cell submits the build request and waits for the application image to finish building, which might take a while.
-- After successful completion, the application container image is available in the configured CPD Docker registry, with
-the image name `edge-camera-classifier-app:v1`.
-
-- After building the image, it needs to be [packaged for deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-register-app.html), either directly in CPD or in Edge Application Manager.
-- Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-deploy.html).
-
-- Optionally, after the appliction is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
-can be used to directly view the messages the micro-edge application is writing to the Event Streams topic, for debug.
-When running the cells in this notebook, be sure the `EVENTSTREAMS_TOPIC` is set appropriately, and enter the Event
-Streams credentials string when prompted, as above.  Note that by default, only the aggregated digit prediction and
-scoring performance metrics will be shown.  If `SHOW_IMAGES` is set to True, the image associated with each low-
-confidence prediction will be displayed, along with the possible predictions and their scores.  Interspersed with these
-images, the occasional metrics information will be displayed, each time it is sent across the topic.
+1. Open the `build-edge-application.jupyter-py36` notebook in CPD.
+2. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and the Event Streams topic (`EVENTSTREAMS_TOPIC`) are set
+   appropriately to match your environment (Requirements 6 and 7, respectively, above).
+3. Execute each cell in the notebook.
+   - Be sure to enter your Event Streams credentials string in the third code cell when it prompts.  This should have
+     been acquired while setting up the Event Streams instance, above in Requirement 7.
+4. The last cell submits the build request and waits for the application image to finish building, which might take a while.
+   - After successful completion, the application container image is available in the configured CPD Docker registry, with
+     the image name `edge-camera-classifier-app:v1`.
+5. After building the image, it needs to be [packaged for deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-register-app.html),
+   either directly in CPD or in Edge Application Manager.
+6. Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-deploy.html).
+7. Optionally, after the appliction is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
+   can be used to directly view the messages the micro-edge application is writing to the Event Streams topic, for debug.
+   - When running the cells in this notebook, be sure the `EVENTSTREAMS_TOPIC` is set appropriately, and enter the Event
+     Streams credentials string when prompted, as above.  Note that by default, only the aggregated digit prediction and
+     scoring performance metrics will be shown.  If `SHOW_IMAGES` is set to True, the image associated with each low-
+     confidence prediction will be displayed, along with the possible predictions and their scores.  Interspersed with these
+     images, the occasional metrics information will be displayed, each time it is sent across the topic.
 
 ### 3. Build and Submit Metro-Edge Application
-- Open the `build-metro-application.jupyter-py36` notebook in CPD.
-- Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and Event Streams topic (`EVENTSTREAMS_TOPIC`) are set
-appropriately to match your environment, as above.
-- Execute each cell in the notebook.
-- Be sure to enter your Event Streams credentials string when it prompts, as above.
-- The last cell submits the build request and waits for the application to finish building.  Once it has finished, it
-submits the application as a job in the local CPD Streams Instance (that is, _not_ on an Edge system).
-- The running job can be viewed or cancelled via the CPD "My Instances" interface, under the "Jobs" tab.
+1. Open the `build-metro-application.jupyter-py36` notebook in CPD.
+2. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) and Event Streams topic (`EVENTSTREAMS_TOPIC`) are set
+   appropriately to match your environment, as above.
+3. Execute each cell in the notebook.
+   - Be sure to enter your Event Streams credentials string when it prompts, as above.
+4. The last cell submits the build request and waits for the application to finish building.  Once it has finished, it
+   submits the application as a job in the local CPD Streams Instance (that is, _not_ on an Edge system).
+   - The running job can be viewed or cancelled via the CPD "My Instances" interface, under the "Jobs" tab.
 
 ### 4. Observe Running System
 Once both applications are up and running, the micro-edge application will be sending occasional aggregate performance
@@ -81,7 +81,9 @@ and prediction metrics up to the metro-edge application, along with images that 
 action on those images and metrics, the current metro-edge application just aggregates them and exposes them as a Streams
 View so that local notebooks can perform interactive analysis of the current behavior.  For an example of this, the
 `render-metro-views.jupyter-py36` notebook can be opened and executed in CPD.
-- Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) is set appropriately to match your environment, as above.
-- Execute the cells in the notebook.  While the early cells simply set up the Streams View connection queues, the last
-three sections are more notable, and probably should be executed one at a time, reading the description and interacting
-with the graphs and images as described in the notebook.
+1. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) is set appropriately to match your environment, as above.
+2. Execute the cells in the notebook.
+   -  While the early cells simply set up the Streams View connection queues, the last three sections are more notable,
+      and probably should be executed one at a time, reading the description and interacting with the graphs and images as
+      described in the notebook.
+
