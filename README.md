@@ -78,11 +78,12 @@ integrating with Github is available [here](https://www.ibm.com/support/knowledg
 Once both applications are up and running, the micro-edge application will be sending occasional aggregate performance
 and prediction metrics up to the metro-edge application, along with images that it had a difficult time predicting the digit in
 (that is, low confidence in its prediction).  While the metro-edge application could perform some additional analytics or
-action on those images and metrics, the current metro-edge application just aggregates them and exposes them as a Streams
-View so that local notebooks can perform interactive analysis of the current behavior.  For an example of this, the
-`render-metro-views.jupyter-py36` notebook can be opened and executed in CPD.
-1. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) is set appropriately to match your environment, as above.
-2. Execute the cells in the notebook.
+action on those images and metrics, across all instances of the micro-edge application, the current metro-edge application
+just aggregates them and exposes them as Streams Views so that local notebooks can perform interactive analysis of the
+current behavior.  The `render-metro-views` notebook is an example of this.
+1. Open the `render-metro-views.jupyter-py36` notebook in CPD.
+2. Be sure the Streams Instance name (`STREAMS_INSTANCE_NAME`) is set appropriately to match your environment, as above.
+3. Execute the cells in the notebook.
    -  While the early cells simply set up the Streams View connection queues, the last three sections are more notable,
       and probably should be executed one at a time, reading the description and interacting with the graphs and images as
       described in the notebook.
