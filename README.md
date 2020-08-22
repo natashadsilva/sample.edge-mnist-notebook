@@ -25,11 +25,18 @@ Please see the appropriate documentation links for installing and provisioning e
 
 ## Architectural Overview
 
-The Micro-Edge job communicates to a job running in the Metro-Edge using an IBM
-Event Streams topic, and a Notebook running at the Metro-Edge can be used to see,
-in real-time, statistics on the Micro-Edge digit predictions, as well as seeing
-uncertain digit predictions, which could be used to re-train the prediction model
-to improve accuracy, etc.
+The sample consists of three primary notebooks:
+- `build-edge-application` creates the micro-edge application.
+- `build-metro-application` creates and submits the metro-edge application.
+- `render-metro-views` displays live information from the metro-edge application.
+
+When running on the Edge systems, the micro-edge application iterates through a set of test images,
+preparing and scoring them against a digit prediction model.  It sends aggregated metrics and
+low-certainty images to a topic in Event Streams, which are then picked up by the metro-edge application,
+running on the CPD Hub in a Streams instance.  A notebook running in the CPD Hub can be used to see data
+from the metro-edge application, in real-time, displaying dashboards of current digit prediction
+statistics, uncertain digit prediction images and scores, and a mocked-up "Correction Station", which
+could be used to re-train the prediction model to improve accuracy, etc.
 
 ![Application Architecture](arch.png)
 
