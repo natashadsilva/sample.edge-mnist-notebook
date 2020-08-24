@@ -64,9 +64,9 @@ integrating with Github is available [here](https://www.ibm.com/support/knowledg
 4. The last cell submits the build request and waits for the application image to finish building, which might take a while.
    - After successful completion, the application container image is available in the configured CPD Docker registry, with
      the image name `edge-camera-classifier-app:v1`.
-5. After building the image, it needs to be [packaged for deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-register-app.html),
+5. After building the image, it needs to be [packaged for deployment](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-register-app.html),
    either directly in CPD or in Edge Application Manager.
-6. Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.5.0/svc-edge/usage-deploy.html).
+6. Finally, it can be [deployed to edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/usage-deploy.html).
 7. Optionally, after the appliction is running on one or more edge systems, the `testing-kafka.jupyter-py36` notebook
    can be used to directly view the messages the micro-edge application is writing to the Event Streams topic, for debug.
    - When running the cells in this notebook, be sure the `EVENTSTREAMS_TOPIC` is set appropriately, and enter the Event
