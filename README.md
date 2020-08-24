@@ -21,7 +21,7 @@ Please see the appropriate documentation links for installing and provisioning e
 4. [Watson Studio service on CPD](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/install-ws.html)
 5. [Streams Instance](https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/cpd/svc/streams/provision.html#provision)
 6. [Edge systems](https://www.ibm.com/support/knowledgecenter/SSQNUZ_3.0.1/svc-edge/admin.html)
-7. [IBM Event Streams instance on IBM Cloud](https://github.ibm.com/PrivateCloud-analytics/cp4d.edge/wiki/Kafka-Options-for-Edge-Applications#event-streams-in-ibm-cloud)
+7. [IBM Event Streams instance on IBM Cloud](https://ibmstreams.github.io/streamsx.documentation/docs/edgeanalytics/kafka-options#event-streams-in-ibm-cloud)
 
 ## Architectural Overview
 
