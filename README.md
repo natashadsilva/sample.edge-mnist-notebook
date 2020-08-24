@@ -30,9 +30,9 @@ The sample consists of three primary notebooks:
 - `build-metro-application` creates and submits the metro-edge application.
 - `render-metro-views` displays live information from the metro-edge application.
 
-When running on the Edge systems, the *micro-edge application* iterates through a set of test images,
+When running on the Edge systems, the **micro-edge application** iterates through a set of test images,
 preparing and scoring them against a digit prediction model.  It sends aggregated metrics and
-low-certainty images to a topic in Event Streams, which are then picked up by the *metro-edge application*,
+low-certainty images to a topic in Event Streams, which are then picked up by the **metro-edge application**,
 running on the CPD Hub in a Streams instance, where metrics can be aggregated across multiple micro-edge
 application instances.
 
